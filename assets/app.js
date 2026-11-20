@@ -134,8 +134,10 @@
   // ── Navigation ──────────────────────────────────────────────
   function navigate(view) {
     try {
+      if (view === 'landing') { showLanding(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      if (view === 'login') { showLogin(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
       if (!document.getElementById('view-' + view)) return;
-      if (!state.loggedIn && view !== 'landing' && view !== 'login') {
+      if (!state.loggedIn) {
         showLanding();
         return;
       }
@@ -165,7 +167,7 @@
       if (lv) { lv.hidden = false; lv.classList.add('is-active'); }
       if (loginv) loginv.hidden = true;
       state.view = 'landing';
-      try { history.replaceState(null, '', '#landing'); } catch (e) {}
+      try { history.replaceState(null, '', window.location.pathname + window.location.search); } catch (e) {}
     } catch (e) {
       console.error('showLanding error:', e);
     }
@@ -636,7 +638,7 @@
     try { renderReports(); } catch (e) { console.error('renderReports error:', e); }
     const hash = (location.hash || '').replace('#', '');
     if (hash === 'login') { showLogin(); return; }
-    if (hash === 'landing' || !hash) { showLanding(); return; }
+    if (!hash || hash === 'landing' || hash === 'view-landing') { showLanding(); return; }
     state.loggedIn = true;
     const ls = $('#landingShell'); const as = $('#appShell');
     if (ls) ls.hidden = true; if (as) as.hidden = false;
