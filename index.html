@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="es-UY">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velumi — El sistema operativo comercial de tu pyme</title>
+<meta name="description" content="Velumi es el CRM con IA para pymes uruguayas: clientes, pipeline, campañas por WhatsApp, contenido con IA y diseño web en una sola plataforma.">
+<meta name="theme-color" content="#1428E8">
+<link rel="icon" type="image/png" href="assets/brand/velumi-favicon.png">
+<link rel="apple-touch-icon" href="assets/brand/velumi-favicon.png">
+<link rel="preload" as="image" href="assets/brand/velumi-hero.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<!-- ============ SVG SPRITE ============ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-user-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></symbol>
+  <symbol id="i-funnel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.46V19l4 2v-8.54z"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+  <symbol id="i-kanban" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/><path d="M5 3v4M3 5h4M19 17v4M17 19h4"/></symbol>
+  <symbol id="i-pen-tool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="21" x2="21" y2="21"/><line x1="18" y1="17" x2="18" y2="7"/><line x1="12" y1="17" x2="12" y2="10"/><line x1="6" y1="17" x2="6" y2="13"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.16c-.24.68-1.4 1.33-1.93 1.38-.53.05-1.02.24-3.44-.72-2.92-1.15-4.76-4.14-4.9-4.33-.14-.19-1.17-1.56-1.17-2.98 0-1.42.74-2.11 1-2.4.26-.29.57-.36.76-.36.19 0 .38.01.54.02.17.01.4-.07.63.48.24.57.81 1.99.88 2.13.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.29.38-.42.51-.14.14-.28.29-.12.57.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.69-.8.87-1.08.18-.28.36-.23.61-.14.25.09 1.58.75 1.85.88.27.14.45.21.52.33.07.12.07.68-.17 1.36z"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2.6"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></symbol>
+  <symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+  <symbol id="i-trend-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+  <symbol id="i-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-credit-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+  <symbol id="i-branch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24" fill="currentColor"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></symbol>
+</svg>
+
+<!-- ==================== LANDING + LOGIN ==================== -->
+<div id="landingShell">
+
+  <section class="view is-active sf" id="view-landing">
+    <header class="sf-nav">
+      <a class="sf-brand" href="#view-landing" aria-label="Velumi inicio">
+        <img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="600" height="151">
+      </a>
+      <nav class="sf-links">
+        <a href="#sf-productos">Productos</a>
+        <a href="#sf-precios">Precios</a>
+        <a href="#sf-faq">FAQ</a>
+      </nav>
+      <div class="sf-nav-actions">
+        <button class="btn btn-ghost" data-action="open-login">Ingresar</button>
+        <button class="btn btn-primary" data-action="open-login">Empezar gratis</button>
+      </div>
+    </header>
+
+    <section class="sf-hero">
+      <span class="sf-hero-glow sf-hero-glow-a" aria-hidden="true"></span>
+      <span class="sf-hero-glow sf-hero-glow-b" aria-hidden="true"></span>
+      <div class="sf-hero-inner">
+        <div class="sf-hero-copy">
+          <span class="sf-kicker"><span class="sf-kicker-dot"></span>CRM + IA para pymes en Uruguay</span>
+          <h1>El CRM con IA que hace <span class="text-gradient">crecer tu comercio</span></h1>
+          <p>Velumi reúne clientes, ventas, campañas y contenido con IA en una sola plataforma. Todo lo que tu pyme necesita para atraer, atender y fidelizar, en pesos uruguayos.</p>
+          <div class="sf-hero-ctas">
+            <button class="btn btn-primary btn-lg" data-action="open-login">Empezar gratis <svg class="icon"><use href="#i-arrow-right"/></svg></button>
+            <button class="btn btn-outline-blue btn-lg" data-action="open-login"><svg class="icon"><use href="#i-play"/></svg> Ver demostración</button>
+          </div>
+          <p class="sf-hero-note"><svg class="icon"><use href="#i-check-circle"/></svg>14 días gratis · Sin tarjeta de crédito · Cancelás cuando quieras</p>
+        </div>
+        <div class="sf-hero-visual">
+          <div class="sf-hero-frame">
+            <picture>
+              <source srcset="assets/brand/velumi-hero.webp" type="image/webp">
+              <img src="assets/brand/velumi-hero.png" alt="Velumi, la plataforma de crecimiento para tu comercio" width="1672" height="941">
+            </picture>
+          </div>
+          <div class="sf-hero-chip sf-hero-chip-top">
+            <span class="chip-ic"><svg class="icon"><use href="#i-sparkles"/></svg></span>
+            <div><b>IA incluida</b><span>Copy listo para tus canales</span></div>
+          </div>
+          <div class="sf-hero-chip sf-hero-chip-bottom">
+            <span class="chip-ic green"><svg class="icon"><use href="#i-whatsapp"/></svg></span>
+            <div><b>WhatsApp conectado</b><span>Campañas y seguimiento</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sf-strip">
+      <span class="sf-strip-label">Comercios que ya crecen con Velumi</span>
+      <div class="sf-logos"><b>ÁMBAR</b><b>Girasol</b><b>NORDIC</b><b>La Estación</b><b>Bodega del Sur</b><b>Lumen</b></div>
+    </section>
+
+    <section class="sf-section" id="sf-productos">
+      <h2 class="sf-h2">Un sistema. Toda la relación con el cliente.</h2>
+      <p class="sf-lead">Todo lo que una pyme uruguaya necesita para captar, atender y fidelizar: nada más.</p>
+      <div class="sf-grid">
+        <div class="sf-card"><span class="sf-ic" style="--t:#E9EDFF;--c:#1428E8"><svg class="icon"><use href="#i-users"/></svg></span><div><h3>Clientes</h3><p>Ficha, etiquetas e historial de visitas de cada clienta.</p></div><span class="sf-go">Ver en la demo →</span></div>
+        <div class="sf-card"><span class="sf-ic" style="--t:#FFF6E8;--c:#B86E00"><svg class="icon"><use href="#i-funnel"/></svg></span><div><h3>Pipeline</h3><p>Kanban visual para mover negocios de «nuevo» a «ganado».</p></div><span class="sf-go">Ver en la demo →</span></div>
+        <div class="sf-card"><span class="sf-ic" style="--t:#E7F8F1;--c:#0E9F6E"><svg class="icon"><use href="#i-megaphone"/></svg></span><div><h3>Campañas</h3><p>WhatsApp, email e Instagram conectados a tu base. Medí apertura y conversión.</p></div><span class="sf-go">Ver en la demo →</span></div>
+        <div class="sf-card"><span class="sf-ic" style="--t:#FDEBF4;--c:#D63384"><svg class="icon"><use href="#i-sparkles"/></svg></span><div><h3>Contenido IA</h3><p>Copy listo para Instagram, WhatsApp, email y landing, con tu tono.</p></div><span class="sf-go">Ver en la demo →</span></div>
+        <div class="sf-card"><span class="sf-ic" style="--t:#E6FAFF;--c:#009FC7"><svg class="icon"><use href="#i-pen-tool"/></svg></span><div><h3>Diseño y Web</h3><p>Logos, landing y sitios contratables dentro de Velumi, con Mercado Pago.</p></div><span class="sf-go">Ver en la demo →</span></div>
+        <div class="sf-card"><span class="sf-ic" style="--t:#EEF1FA;--c:#5B647C"><svg class="icon"><use href="#i-chart"/></svg></span><div><h3>Informes</h3><p>Ventas atribuidas, ROI por campaña, LTV y recurrencia. En pesos uruguayos.</p></div><span class="sf-go">Ver en la demo →</span></div>
+      </div>
+    </section>
+
+    <section class="sf-pricing" id="sf-precios">
+      <h2 class="sf-h2">Precios en pesos uruguayos, sin permanencia</h2>
+      <p class="sf-lead">Empezá gratis. Cambiá o cancelá cuando quieras.</p>
+      <div class="sf-pricing-grid">
+        <div class="sf-price"><h3>Starter</h3><div class="sf-amount">$ 1.290<span>/mes</span></div><p class="sf-cap">Hasta 200 contactos</p><button class="btn btn-outline-blue block" data-action="open-login">Empezar</button></div>
+        <div class="sf-price featured"><span class="sf-badge">Más elegido</span><h3>Pro</h3><div class="sf-amount">$ 2.490<span>/mes</span></div><p class="sf-cap">Hasta 1.000 contactos · todo lo de Starter</p><button class="btn btn-primary block" data-action="open-login">Probar 14 días gratis</button></div>
+        <div class="sf-price"><h3>Business</h3><div class="sf-amount">$ 4.990<span>/mes</span></div><p class="sf-cap">Contactos ilimitados · multi-usuario + API</p><button class="btn btn-outline-blue block" data-action="open-login">Contactar</button></div>
+      </div>
+    </section>
+
+    <section class="sf-faq-wrap" id="sf-faq">
+      <h2 class="sf-h2">Preguntas frecuentes</h2>
+      <div class="sf-faq">
+        <details><summary>¿Para quién es Velumi?</summary><p>Para comercios minoristas: peluquerías, estéticas, tiendas, consultorios, gastronomía y servicios. Si vendés a personas, te sirve.</p></details>
+        <details><summary>¿Necesito saber de marketing o tecnología?</summary><p>No. Flujos y plantillas listos para usar, y la IA te ayuda a escribir el copy.</p></details>
+        <details><summary>¿Cómo pago?</summary><p>Tarjeta, débito o Mercado Pago. Facturación electrónica DGI incluida.</p></details>
+        <details><summary>¿Puedo cancelar cuando quiera?</summary><p>Sí. Sin permanencia ni multas.</p></details>
+      </div>
+    </section>
+
+    <section class="sf-cta">
+      <div class="sf-cta-media">
+        <picture>
+          <source srcset="assets/brand/velumi-cta.webp" type="image/webp">
+          <img src="assets/brand/velumi-cta.png" alt="" aria-hidden="true" width="1600" height="533">
+        </picture>
+      </div>
+      <div class="sf-cta-inner">
+        <div class="sf-cta-copy">
+          <h2>¿Todo listo para crecer?</h2>
+          <p>Empezá hoy con Velumi. En minutos estás enviando tu primera campaña.</p>
+          <button class="btn btn-primary btn-lg" data-action="open-login">Empezar gratis</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="sf-foot">
+      <a class="sf-brand" href="#view-landing" aria-label="Velumi inicio">
+        <img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="600" height="151">
+      </a>
+      <p>Hecho en Montevideo 🇺🇾 · © 2026 Velumi</p>
+    </footer>
+  </section>
+
+  <section class="view sf-login" id="view-login" hidden>
+    <div class="sf-login-card">
+      <div class="sf-login-brand"><img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="600" height="151"></div>
+      <span class="login-kicker">Tu comercio, en movimiento</span>
+      <h2>Ingresá a tu cuenta</h2>
+      <p>Demo: usá cualquier email y contraseña para entrar.</p>
+      <form id="loginForm" class="sf-login-form" onsubmit="return false">
+        <div class="field"><label for="loginEmail">Email</label><input type="email" id="loginEmail" value="martina@ambar.uy" autocomplete="email" required></div>
+        <div class="field"><label for="loginPass">Contraseña</label><input type="password" id="loginPass" value="demo1234" autocomplete="off" required></div>
+        <button type="button" class="btn btn-primary block btn-lg" onclick="MKT.login()">Ingresar</button>
+      </form>
+      <div class="sf-login-foot">
+        <button class="link-arrow" data-action="close-login">← Volver a la landing</button>
+        <span>Hecho en Montevideo</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== APP SHELL ==================== -->
+<div id="appShell" hidden>
+  <div class="side-backdrop" id="sideBackdrop"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="side-label">Espacio de trabajo</div>
+    <button class="nav-item is-active" data-view="home"><svg class="icon"><use href="#i-home"/></svg>Inicio</button>
+    <button class="nav-item" data-view="clientes"><svg class="icon"><use href="#i-users"/></svg>Clientes<span class="nav-badge" id="sideClientCount">18</span></button>
+    <button class="nav-item" data-view="pipeline"><svg class="icon"><use href="#i-funnel"/></svg>Pipeline</button>
+    <button class="nav-item" data-view="campanas"><svg class="icon"><use href="#i-megaphone"/></svg>Campañas<span class="nav-dot"></span></button>
+    <button class="nav-item" data-view="proyectos"><svg class="icon"><use href="#i-kanban"/></svg>Proyectos</button>
+    <div class="side-label">Crecimiento</div>
+    <button class="nav-item" data-view="automatizaciones"><svg class="icon"><use href="#i-zap"/></svg>Automatizaciones</button>
+    <button class="nav-item" data-view="ia"><svg class="icon"><use href="#i-sparkles"/></svg>Contenido IA<span class="nav-tag">BETA</span></button>
+    <button class="nav-item" data-view="servicios"><svg class="icon"><use href="#i-pen-tool"/></svg>Diseño y Web</button>
+    <div class="side-label">Análisis</div>
+    <button class="nav-item" data-view="informes"><svg class="icon"><use href="#i-chart"/></svg>Informes</button>
+    <div class="plan-card">
+      <div class="plan-card-top"><svg class="icon"><use href="#i-sparkles"/></svg>Plan Pro</div>
+      <p>642 de 1.000 contactos usados</p>
+      <div class="pc-bar"><i style="width:64%"></i></div>
+      <button data-action="plan">Mejorar plan</button>
+    </div>
+    <div class="side-foot"><svg class="icon" style="width:11px;height:11px"><use href="#i-pin"/></svg>Montevideo, Uruguay · v2.4</div>
+  </aside>
+
+  <div class="app-main">
+    <header class="topbar">
+      <button class="tb-icon menu-toggle" id="menuToggle" aria-label="Abrir menú"><svg class="icon"><use href="#i-menu"/></svg></button>
+      <button class="tb-icon" id="appsBtn" aria-label="Aplicaciones" aria-haspopup="true" aria-expanded="false"><svg class="icon"><use href="#i-grid"/></svg></button>
+      <button class="brand" data-view="home" aria-label="Velumi inicio">
+        <img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="600" height="151">
+      </button>
+      <span class="tb-app">Ventas · CRM</span>
+      <div class="tb-center">
+        <div class="global-search">
+          <svg class="gs-icon"><use href="#i-search"/></svg>
+          <input id="globalSearch" type="search" autocomplete="off" placeholder="Buscar clientes, campañas, proyectos..." aria-label="Buscar en Velumi">
+          <span class="kbd">Ctrl K</span>
+          <div id="searchResults" hidden></div>
+        </div>
+      </div>
+      <div class="tb-right">
+        <button class="tb-icon" id="quickCreateBtn" aria-label="Crear nuevo" aria-haspopup="true" aria-expanded="false"><svg class="icon"><use href="#i-plus"/></svg></button>
+        <button class="tb-icon" id="helpBtn" aria-label="Ayuda"><svg class="icon"><use href="#i-help"/></svg></button>
+        <button class="tb-icon" id="bellBtn" aria-label="Notificaciones" aria-haspopup="true" aria-expanded="false"><svg class="icon"><use href="#i-bell"/></svg><span class="notif-dot"></span></button>
+        <div class="tb-sep"></div>
+        <button class="avatar-btn" id="profileBtn" aria-label="Mi perfil" aria-haspopup="true" aria-expanded="false"><span class="avatar avatar-mg">MG</span></button>
+      </div>
+
+      <div class="popover" id="appsMenu" hidden>
+        <div class="menu-head"><b>Aplicaciones Velumi</b><span class="pill purple"><svg class="icon" style="width:10px;height:10px"><use href="#i-sparkles"/></svg> IA incluida</span></div>
+        <div class="apps-grid">
+          <button class="app-tile" data-view="home"><span class="tile-ic"><svg class="icon"><use href="#i-home"/></svg></span>Inicio</button>
+          <button class="app-tile" data-view="clientes"><span class="tile-ic"><svg class="icon"><use href="#i-users"/></svg></span>Clientes</button>
+          <button class="app-tile" data-view="pipeline"><span class="tile-ic" style="background:#E6FAFF;color:#009FC7"><svg class="icon"><use href="#i-funnel"/></svg></span>Pipeline</button>
+          <button class="app-tile" data-view="campanas"><span class="tile-ic" style="background:#FFF6E8;color:#B86E00"><svg class="icon"><use href="#i-megaphone"/></svg></span>Campañas</button>
+          <button class="app-tile" data-view="proyectos"><span class="tile-ic" style="background:#EFEBFF;color:#6D4AFF"><svg class="icon"><use href="#i-kanban"/></svg></span>Proyectos</button>
+          <button class="app-tile" data-view="automatizaciones"><span class="tile-ic" style="background:#E7F8F1;color:#0E9F6E"><svg class="icon"><use href="#i-zap"/></svg></span>Automatizaciones</button>
+          <button class="app-tile" data-view="ia"><span class="tile-ic" style="background:#FDEBF4;color:#D63384"><svg class="icon"><use href="#i-sparkles"/></svg></span>Contenido IA</button>
+          <button class="app-tile" data-view="servicios"><span class="tile-ic"><svg class="icon"><use href="#i-pen-tool"/></svg></span>Diseño y Web</button>
+          <button class="app-tile" data-view="informes"><span class="tile-ic" style="background:#EEF1FA;color:#5B647C"><svg class="icon"><use href="#i-chart"/></svg></span>Informes</button>
+        </div>
+        <div class="apps-foot"><span>Velumi · Plan Pro</span><button class="link-arrow" data-action="plan">Gestionar plan <svg class="icon"><use href="#i-arrow-up-right"/></svg></button></div>
+      </div>
+
+      <div class="popover" id="createMenu" hidden>
+        <div class="menu-caption">Crear registro</div>
+        <button class="menu-item" data-new="client"><svg class="icon"><use href="#i-user-plus"/></svg>Nuevo cliente</button>
+        <button class="menu-item" data-new="campaign"><svg class="icon"><use href="#i-megaphone"/></svg>Nueva campaña</button>
+        <button class="menu-item" data-new="project"><svg class="icon"><use href="#i-kanban"/></svg>Nuevo proyecto</button>
+        <button class="menu-item" data-new="deal" data-stage="lead"><svg class="icon"><use href="#i-funnel"/></svg>Nuevo negocio</button>
+        <button class="menu-item" data-new="flow"><svg class="icon"><use href="#i-zap"/></svg>Nuevo flujo</button>
+        <div class="menu-sep"></div>
+        <button class="menu-item" data-new="task"><svg class="icon"><use href="#i-check-circle"/></svg>Nueva tarea</button>
+        <button class="menu-item" data-new="ai"><svg class="icon"><use href="#i-sparkles"/></svg>Generar contenido con IA</button>
+      </div>
+
+      <div class="popover" id="notifMenu" hidden>
+        <div class="menu-head"><b>Notificaciones</b><button class="menu-link" id="markRead">Marcar leídas</button></div>
+        <div class="notif-item unread"><span class="notif-ic" style="background:#E7F8F1;color:#0E9F6E"><svg class="icon"><use href="#i-megaphone"/></svg></span><div class="flex1"><b>Campaña enviada</b><span>«Keratina &amp; verano» llegó a 248 contactos</span></div><time>10:24</time></div>
+        <div class="notif-item unread"><span class="notif-ic" style="background:#E9EDFF;color:#1428E8"><svg class="icon"><use href="#i-users"/></svg></span><div class="flex1"><b>3 clientas nuevas</b><span>Se sumaron desde Instagram</span></div><time>ayer</time></div>
+        <div class="apps-foot"><span>2 sin leer</span><button class="link-arrow" data-action="agenda">Ver agenda <svg class="icon"><use href="#i-arrow-up-right"/></svg></button></div>
+      </div>
+
+      <div class="popover" id="profileMenu" hidden>
+        <div class="profile-top"><span class="avatar avatar-mg">MG</span><div><b>Martina Gómez</b><span>martina@ambar.uy</span></div></div>
+        <div class="menu-sep"></div>
+        <button class="menu-item" data-action="settings"><svg class="icon"><use href="#i-settings"/></svg>Configuración</button>
+        <button class="menu-item" data-action="plan"><svg class="icon"><use href="#i-credit-card"/></svg>Plan y facturación</button>
+        <div class="menu-sep"></div>
+        <button class="menu-item" data-action="logout"><svg class="icon"><use href="#i-close"/></svg>Cerrar sesión</button>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <!-- ================= HOME ================= -->
+      <section class="view is-active" id="view-home">
+        <div class="page-head">
+          <div>
+            <div class="breadcrumb"><b>Velumi</b><svg class="icon"><use href="#i-chevron-right"/></svg><span>Inicio</span></div>
+            <h1 class="greeting">Hola, Martina <span class="wave">👋</span></h1>
+            <p class="page-sub">Este es el pulso de <strong>Ámbar Estudio</strong> · Hoy, 19 nov 2026</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-secondary" data-view="informes"><svg class="icon"><use href="#i-chart"/></svg>Ver informes</button>
+            <button class="btn btn-primary" data-new="campaign"><svg class="icon"><use href="#i-plus"/></svg>Nueva campaña</button>
+          </div>
+        </div>
+
+        <div class="stat-strip">
+          <div class="stat"><span class="st-ic blue"><svg class="icon"><use href="#i-dollar"/></svg></span><div><small>Ventas del mes</small><b>$ 1.284.500</b></div><span class="spark" data-spark="32,41,38,55,61,58,72,84" data-color="#1428E8"></span></div>
+          <div class="stat"><span class="st-ic green"><svg class="icon"><use href="#i-users"/></svg></span><div><small>Clientas activas</small><b>642</b></div><span class="spark" data-spark="12,18,16,22,27,31,29,38" data-color="#0E9F6E"></span></div>
+          <div class="stat"><span class="st-ic pink"><svg class="icon"><use href="#i-megaphone"/></svg></span><div><small>Campañas en curso</small><b>4</b></div><span class="spark" data-spark="2,3,2,4,3,5,4,4" data-color="#D63384"></span></div>
+          <div class="stat"><span class="st-ic amber"><svg class="icon"><use href="#i-target"/></svg></span><div><small>Conversión</small><b>18,4%</b></div><span class="spark" data-spark="9,11,10,14,13,17,16,19" data-color="#B86E00"></span></div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><div><h3>Ingresos de los últimos 6 meses</h3><p>Ventas atribuidas · pesos uruguayos</p></div><button class="link-arrow" data-view="informes">Ver informe <svg class="icon"><use href="#i-arrow-up-right"/></svg></button></div>
+            <div class="card-body"><div id="homeRevenue" class="chart-host"></div></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h3>Próximas actividades</h3><p>Agenda de hoy · Ámbar Estudio</p></div><button class="link-arrow" data-action="agenda">Agenda <svg class="icon"><use href="#i-arrow-up-right"/></svg></button></div>
+            <div class="card-body" id="apptList"></div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><div><h3>Tareas pendientes</h3><p id="taskProgressText">0% completado</p></div><button class="btn btn-secondary btn-sm" data-new="task"><svg class="icon"><use href="#i-plus"/></svg>Nueva tarea</button></div>
+            <div class="progress-line"><i id="taskBar" style="width:0%"></i></div>
+            <div class="card-body"><div id="taskList"></div></div>
+            <div class="card-foot"><span id="taskBadge">0 de 0</span><button class="link-arrow" data-action="reactivate">Ver reactivación <svg class="icon"><use href="#i-arrow-up-right"/></svg></button></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h3>Resumen rápido</h3><p>Accesos directos</p></div></div>
+            <div class="card-body quick-grid">
+              <button class="quick" data-view="clientes"><span class="tile-ic"><svg class="icon"><use href="#i-users"/></svg></span><b>Clientes</b><small>Ver base completa</small></button>
+              <button class="quick" data-view="pipeline"><span class="tile-ic" style="background:#E6FAFF;color:#009FC7"><svg class="icon"><use href="#i-funnel"/></svg></span><b>Pipeline</b><small>Negocios abiertos</small></button>
+              <button class="quick" data-view="campanas"><span class="tile-ic" style="background:#FFF6E8;color:#B86E00"><svg class="icon"><use href="#i-megaphone"/></svg></span><b>Campañas</b><small>Medir resultados</small></button>
+              <button class="quick" data-view="ia"><span class="tile-ic" style="background:#FDEBF4;color:#D63384"><svg class="icon"><use href="#i-sparkles"/></svg></span><b>Contenido IA</b><small>Generar copy</small></button>
+            </div>
+          </div>
+        </div>
+        <div class="app-foot">🇺🇾 Velumi · Datos de demostración · Noviembre 2026</div>
+      </section>
+
+      <!-- ================= CLIENTES ================= -->
+      <section class="view" id="view-clientes">
+        <div class="page-head">
+          <div><div class="breadcrumb"><b>Velumi</b><svg class="icon"><use href="#i-chevron-right"/></svg><span>Clientes</span></div><h1>Clientes</h1><p class="page-sub">Toda tu base en un solo lugar</p></div>
+          <div class="page-actions"><button class="btn btn-secondary" data-action="import"><svg class="icon"><use href="#i-upload"/></svg>Importar</button><button class="btn btn-primary" data-new="client"><svg class="icon"><use href="#i-plus"/></svg>Nuevo cliente</button></div>
+        </div>
+        <div class="stat-strip four">
+          <div class="stat"><span class="st-ic blue"><svg class="icon"><use href="#i-users"/></svg></span><div><small>Total clientes</small><b id="csTotal">0</b></div></div>
+          <div class="stat"><span class="st-ic green"><svg class="icon"><use href="#i-check-circle"/></svg></span><div><small>Activos</small><b id="csActive">0</b></div></div>
+          <div class="stat"><span class="st-ic amber"><svg class="icon"><use href="#i-alert"/></svg></span><div><small>En riesgo</small><b id="csRisk">0</b></div></div>
+          <div class="stat"><span class="st-ic pink"><svg class="icon"><use href="#i-dollar"/></svg></span><div><small>Valor de vida promedio</small><b id="csLtv">$ 0</b></div></div>
+        </div>
+        <div class="card">
+          <div class="card-head tabs-head">
+            <div class="tabs" id="clientTabs">
+              <button class="tab is-active" data-status="Todos">Todos <span class="n" id="ctAll">0</span></button>
+              <button class="tab" data-status="Activo">Activos <span class="n" id="ctActivo">0</span></button>
+              <button class="tab" data-status="En riesgo">En riesgo <span class="n" id="ctRiesgo">0</span></button>
+              <button class="tab" data-status="Nuevo">Nuevos <span class="n" id="ctNuevo">0</span></button>
+              <button class="tab" data-status="Inactivo">Inactivos <span class="n" id="ctInactivo">0</span></button>
+            </div>
+            <div class="head-tools">
+              <div class="mini-search"><svg class="icon"><use href="#i-search"/></svg><input id="clientSearch" type="search" placeholder="Buscar cliente..."></div>
+              <select id="clientSort" class="select"><option value="recent">Más recientes</option><option value="name">Nombre A-Z</option><option value="ltv">Mayor LTV</option></select>
+            </div>
+          </div>
+          <div class="table-wrap" id="clientsTableHost"></div>
+          <div class="card-foot"><span id="clientRange">Sin clientes</span><div class="pager" id="clientPager"></div></div>
+        </div>
+      </section>
+
+      <!-- ================= PIPELINE ================= -->
+      <section class="view" id="view-pipeline">
+        <div class="page-head">
+          <div><div class="breadcrumb"><b>Velumi</b><svg class="icon"><use href="#i-chevron-right"/></svg><span>Pipeline</span></div><h1>Pipeline de ventas</h1><p class="page-sub">Arrastrá los negocios entre etapas</p></div>
+          <div class="page-actions"><button class="btn btn-primary" data-new="deal" data-stage="lead"><svg class="icon"><use href="#i-plus"/></svg>Nuevo negocio</button></div>
+        </div>
+        <div class="stat-strip three">
+          <div class="stat"><span class="st-ic blue"><svg class="icon"><use href="#i-dollar"/></svg></span><div><small>Valor total</small><b id="pipeTotal">$ 0</b></div></div>
+          <div class="stat"><span class="st-ic green"><svg class="icon"><use href="#i-funnel"/></svg></span><div><small>Abierto</small><b id="pipeOpen">$ 0</b></div></div>
+          <div class="stat"><span class="st-ic amber"><svg class="icon"><use href="#i-trend-up"/></svg></span><div><small>Promedio</small><b id="pipeAvg">$ 0</b></div></div>
+        </div>
+        <div class="stat-strip summary-strip">
+          <div class="st"><small>0 negocios</small></div><div class="st"><small>0 negocios sin cerrar</small></div><div class="st"><small>por negocio · 0 ganados</small></div>
+        </div>
+        <div class="kanban" id="kanbanBoard"></div>
+      </section>
+
+      <!-- ================= CAMPAÑAS ================= -->
+      <section class="view" id="view-campanas">
+        <div class="page-head">
+          <div><div class="breadcrumb"><b>Velumi</b><svg class="icon"><use href="#i-chevron-right"/></svg><span>Campañas</span></div><h1>Campañas <span class="count-pill" id="campaignCountPill">0</span></h1><p class="page-sub">WhatsApp, email e Instagram medidos en pesos</p></div>
+          <div class="page-actions"><button class="btn btn-primary" data-new="campaign"><svg class="icon"><use href="#i-plus"/></svg>Nueva campaña</button></div>
+        </div>
+        <div class="fchips" id="campaignFilters">
+          <button class="fchip on" data-camp-filter="Todas">Todas <span class="n">0</span></button>
+          <button class="fchip" data-camp-filter="Activa">Activas <span class="n">0</span></button>
+          <button class="fchip" data-camp-filter="Programada">Programadas <span class="n">0</span></button>
+          <button class="fchip" data-camp-filter="Borrador">Borradores <span class="n">0</span></button>
+          <button class="fchip" data-camp-filter="Pausada">Pausadas <span class="n">0</span></button>
+        </div>
+        <div class="camp-grid" id="campaignGrid"></div>
+      </section>
+
+      <!-- ================= PROYECTOS ================= -->
+      <section class="view" id="view-proyectos">
+        <div class="page-head">
+          <div><div class="breadcrumb"><b>Velumi</b><svg class="icon"><use href="#i-chevron-right"/></svg><span>Proyectos</span></div><h1>Proyectos <span class="count-pill" id="projectsCountPill">0</span></h1><p class="page-sub">Diseño y web contratados desde la plataforma</p></div>
+          <div class="page-actions"><button class="btn btn-primary" data-new="project"><svg class="icon"><use href="#i-plus"/></svg>Nuevo proyecto</button></div>
+        </div>
+        <div class="fchips" id="projectFilters">
+          <button class="fchip on" data-proj-filter="Todos">Todos</button>
+          <button class="fchip" data-proj-filter="En curso">En curso</button>
+          <button class="fchip" data-proj-filter="En revisión">En revisión</button>
+          <button class="fchip" data-proj-filter="Por comenzar">Por comenzar</button>
+          <button class="fchip" data-proj-filter="Completado">Completados</button>
+        </div>
+        <div class="proj-grid" id="projectGrid"></div>
+      </section>
+
+      <!-- ================= AUTOMATIZACIONES ================= -->
+      <section class="view" id="view-automatizaciones">
+        <div class="page-head">
+          <div><div class="breadcrumb"><b>Velumi</b><svg class="icon"><use href="#i-chevron-right"/></svg><span>Automatizaciones</span></div><h1>Automatizaciones <span class="count-pill" id="flowsCountPill">0 flujos</span></h1><p class="page-sub"><span class="pill green" id="flowsActivePill"><span class="dot"></span>0 flujos activos</span></p></div>
+          <div class="page-actions"><button class="btn btn-primary" data-new="flow"><svg class="icon"><use href="#i-plus"/></svg>Nuevo flujo</button></div>
+        </div>
+        <div class="flow-layout">
+          <div id="flowList"></div>
+          <div id="flowDetail"></div>
+        </div>
+      </section>
+
+      <!-- ================= CONTENIDO IA ================= -->
+      <section class="view" id="view-ia">
+        <div class="page-head">
+          <div><div class="breadcrumb"><b>Velumi</b><svg class="icon"><use href="#i-chevron-right"/></svg><span>Contenido IA</span></div><h1>Contenido con IA <span class="nav-tag">BETA</span></h1><p class="page-sub">Copy listo para tus canales, con el tono de tu marca</p></div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><div><h3>Generar contenido</h3><p>Contanos qué necesitás</p></div></div>
+            <div class="card-body form-stack">
+              <div class="field"><label for="aiTopic">Tema o producto</label><input id="aiTopic" class="input" placeholder="Ej: Keratina & verano"></div>
+              <div class="field"><label for="aiType">Canal</label><select id="aiType" class="select"><option value="instagram">Instagram</option><option value="whatsapp">WhatsApp</option><option value="email">Email</option><option value="landing">Landing</option></select></div>
+              <div class="field"><label for="aiTone">Tono</label><select id="aiTone" class="select"><option>Cercano</option><option>Premium</option><option>Directo</option><option>Didáctico</option></select></div>
+              <div class="field"><label for="aiAudience">Audiencia</label><input id="aiAudience" class="input" placeholder="Ej: clientas de 25 a 45 años"></div>
+              <div class="field"><label for="aiExtra">Detalles extra</label><textarea id="aiExtra" class="input" rows="3" placeholder="Beneficios, precios, llamado a la acción..."></textarea></div>
+              <button class="btn btn-primary block" id="aiGenerateBtn"><svg class="icon"><use href="#i-sparkles"/></svg>Generar variantes</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div><h3>Resultado</h3><p id="aiResultSub">Tus variantes aparecen acá</p></div><span class="pill purple" id="aiVariantPill">3 variantes</span></div>
+            <div class="card-body"><div id="aiOutput" class="ai-output"><div class="empty"><svg class="icon"><use href="#i-sparkles"/></svg><b>Todo listo para crear</b><p>Completá el formulario y generá tu primer copy.</p></div></div></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <div class="card-head"><div><h3>Últimas generaciones</h3></div></div>
+          <div class="card-body history">
+            <div class="hist" data-action="use-session" data-session="0"><span class="h-ic" style="background:#FDEBF4;color:#D63384"><svg class="icon"><use href="#i-instagram"/></svg></span><div class="flex1"><b>Post: Keratina &amp; verano</b><span>Instagram · tono cercano</span></div><time>ayer</time></div>
+            <div class="hist" data-action="use-session" data-session="1"><span class="h-ic" style="background:#E7F8F1;color:#1FA855"><svg class="icon"><use href="#i-whatsapp"/></svg></span><div class="flex1"><b>Reactivación 60 días · v2</b><span>WhatsApp · 3 variantes</span></div><time>12 nov</time></div>
+            <div class="hist" data-action="use-session" data-session="2"><span class="h-ic" style="background:#E9EDFF;color:#1428E8"><svg class="icon"><use href="#i-mail"/></svg></span><div class="flex1"><b>Newsletter Día de la Madre</b><span>Email · tono premium</span></div><time>8 nov</time></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= DISEÑO Y WEB ================= -->
+      <section class="view" id="view-servicios">
+        <div class="page-head">
+          <div><div class="breadcrumb"><b>Velumi</b><svg class="icon"><use href="#i-chevron-right"/></svg><span>Diseño y Web</span></div><h1>Diseño y Web</h1><p class="page-sub">Servicios contratables dentro de Velumi</p></div>
+        </div>
+        <div class="fchips" id="serviceFilters">
+          <button class="fchip on" data-svc-filter="Todos">Todos</button>
+          <button class="fchip" data-svc-filter="Web">Web</button>
+          <button class="fchip" data-svc-filter="Brand">Marca</button>
+          <button class="fchip" data-svc-filter="Content">Contenido</button>
+          <button class="fchip" data-svc-filter="Camp">Campañas</button>
+          <button class="fchip" data-svc-filter="Foto">Foto</button>
+        </div>
+        <div class="svc-grid" id="servicesGrid"></div>
+      </section>
+
+      <!-- ================= INFORMES ================= -->
+      <section class="view" id="view-informes">
+        <div class="page-head">
+          <div><div class="breadcrumb"><b>Velumi</b><svg class="icon"><use href="#i-chevron-right"/></svg><span>Informes</span></div><h1>Informes</h1><p class="page-sub">Ventas atribuidas, ROI y valor de vida</p></div>
+          <div class="page-actions"><button class="btn btn-secondary" data-action="refresh"><svg class="icon"><use href="#i-refresh"/></svg>Actualizar</button><button class="btn btn-secondary" data-action="export"><svg class="icon"><use href="#i-download"/></svg>Descargar CSV</button></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div><h3>Evolución de ventas</h3><p>2026 vs 2025 · pesos uruguayos</p></div><span class="pill blue"><span class="dot"></span>2026</span></div>
+          <div class="card-body"><div id="reportRevenue" class="chart-host"></div></div>
+        </div>
+        <div class="report-grid">
+          <div class="card col-5">
+            <div class="card-head"><div><h3>Fuentes de adquisición</h3><p>De dónde llegan tus clientas</p></div></div>
+            <div class="card-body hbar-list">
+              <div class="hbar"><div class="between"><span>WhatsApp / boca a boca</span><b>52%</b></div><div class="track"><i style="width:52%;background:#1428E8"></i></div></div>
+              <div class="hbar"><div class="between"><span>Instagram orgánico</span><b>27%</b></div><div class="track"><i style="width:27%;background:#D63384"></i></div></div>
+              <div class="hbar"><div class="between"><span>Google Business / reseñas</span><b>14%</b></div><div class="track"><i style="width:14%;background:#0E9F6E"></i></div></div>
+              <div class="hbar"><div class="between"><span>Campañas con IA</span><b>7%</b></div><div class="track"><i style="width:7%;background:#B86E00"></i></div></div>
+            </div>
+          </div>
+          <div class="card col-7">
+            <div class="card-head"><div><h3>Clientes con mayor valor</h3><p>Ranking por LTV</p></div></div>
+            <div class="table-wrap"><table class="tbl"><thead><tr><th>Cliente</th><th>Etiquetas</th><th class="r">Visitas</th><th class="r">Valor de vida</th></tr></thead><tbody id="topClientsBody"></tbody></table></div>
+            <div class="card-foot"><span>Actualizado hoy</span><button class="link-arrow" data-action="export">Descargar CSV <svg class="icon"><use href="#i-download"/></svg></button></div>
+          </div>
+        </div>
+        <div class="app-foot">🇺🇾 Velumi Reports · Datos de demostración · Noviembre 2026</div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div id="modalRoot"></div>
+<div class="toasts" id="toasts"></div>
+<script src="assets/data.js"></script>
+<script src="assets/charts.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
