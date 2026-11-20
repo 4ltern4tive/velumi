@@ -26,7 +26,7 @@
     if (!host) return;
     const values = (host.dataset.spark || '').split(',').map(Number).filter(v => !isNaN(v));
     if (!values.length) return;
-    const color = host.dataset.color || '#1428E8';
+    const color = host.dataset.color || '#0E7DFB';
     const W = 80, H = 30, pad = 2.5;
     const min = Math.min(...values), max = Math.max(...values);
     const range = max - min || 1;
@@ -46,8 +46,9 @@
   function lineChart(target, cfg) {
     const host = typeof target === 'string' ? document.getElementById(target) : target;
     if (!host) return;
-    const W = 720;
-    const H = cfg.height || 230;
+    const baseH = cfg.height || 230;
+    const W = Math.max(300, Math.round(host.clientWidth || 720));
+    const H = Math.round(Math.min(baseH * 1.5, Math.max(baseH, W * 0.3)));
     const padL = 42, padR = 16, padT = 18, padB = 30;
     const innerW = W - padL - padR;
     const innerH = H - padT - padB;

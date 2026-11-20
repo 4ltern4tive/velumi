@@ -292,7 +292,7 @@
       MKT.charts.lineChart('homeRevenue', {
         height: 236,
         labels: ['Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov'],
-        series: [{ values: [43, 52, 47, 61, 72, 84.5], color: '#1428E8', fill: true, dots: true }],
+        series: [{ values: [43, 52, 47, 61, 72, 84.5], color: '#0E7DFB', fill: true, dots: true }],
         target: 90,
         max: 100,
         aria: 'Ingresos de los últimos seis meses'
@@ -627,7 +627,7 @@
       height: 246,
       labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov'],
       series: [
-        { values: [5.1, 5.6, 6.2, 6.8, 7.1, 7.4, 6.9, 8.2, 8.8, 9.4, 11.2], color: '#1428E8', fill: true, dots: false },
+        { values: [5.1, 5.6, 6.2, 6.8, 7.1, 7.4, 6.9, 8.2, 8.8, 9.4, 11.2], color: '#0E7DFB', fill: true, dots: false },
         { values: [3.9, 4.3, 4.7, 5.0, 5.4, 5.8, 5.6, 6.2, 6.7, 7.1, 7.8], color: '#C9D2EC', dashed: true, width: 1.8 }
       ],
       max: 12,
@@ -1022,6 +1022,7 @@
     $('#sidebar')?.classList.toggle('open');
     $('#sideBackdrop')?.classList.toggle('show');
   });
+  $('#sideClose')?.addEventListener('click', () => MKT.closeSidebar());
   $('#sideBackdrop')?.addEventListener('click', MKT.closeSidebar);
 
   /* ---------------- Buscador global ---------------- */
@@ -1140,7 +1141,7 @@
         <aside class="rec-timeline">
           <h4>Actividad reciente</h4>
           <div class="act"><span class="act-ic" style="background:#E7F8F1;color:#1FA855">${icon('whatsapp')}</span><div class="act-body"><p>Mensaje de bienvenida enviado por el flujo automático.</p><time>${esc(c.lastShort)}</time></div></div>
-          <div class="act"><span class="act-ic" style="background:#E9EDFF;color:#1428E8">${icon('calendar')}</span><div class="act-body"><p>Turno reservado: ${nextAppt ? esc(nextAppt.svc) : 'consulta de servicios'}.</p><time>${nextAppt ? 'Hoy, ' + nextAppt.time : 'Sin fecha'}</time></div></div>
+          <div class="act"><span class="act-ic" style="background:#EAF3FF;color:#0E7DFB">${icon('calendar')}</span><div class="act-body"><p>Turno reservado: ${nextAppt ? esc(nextAppt.svc) : 'consulta de servicios'}.</p><time>${nextAppt ? 'Hoy, ' + nextAppt.time : 'Sin fecha'}</time></div></div>
           <div class="act"><span class="act-ic" style="background:#FFF6E8;color:#B86E00">${icon('megaphone')}</span><div class="act-body"><p>Abrió la campaña <b>Promo Día de la Madre</b>.</p><time>hace 4 días</time></div></div>
           <div class="act"><span class="act-ic" style="background:#EFEBFF;color:#6D4AFF">${icon('star')}</span><div class="act-body"><p>Dejó una reseña de 5 estrellas en Google Business.</p><time>hace 2 semanas</time></div></div>
         </aside>
