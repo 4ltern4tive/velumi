@@ -313,7 +313,7 @@ textarea.input{resize:vertical}
 .sf-faq p{color:var(--slate);margin-top:10px;font-size:13px;line-height:1.65}
 .sf-cta{position:relative;overflow:hidden;background:#082A5C;color:#fff}
 .sf-cta-media{position:relative;line-height:0}
-.sf-cta-media img{display:block;width:100%;height:auto;aspect-ratio:1600/533;object-fit:cover}
+.sf-cta-media img{display:block;width:100%;height:auto;aspect-ratio:2172/724;object-fit:cover}
 .sf-cta-media::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 28%,rgba(8,42,92,.18) 55%,rgba(8,42,92,.5) 100%);pointer-events:none;opacity:0;transition:opacity .2s}
 .sf-cta-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:36px 28px 44px;text-align:center}
 .sf-cta h2{font-size:clamp(26px,4.2vw,38px);font-weight:400;letter-spacing:-.03em;line-height:1.15;margin-bottom:12px}
