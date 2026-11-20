@@ -132,10 +132,24 @@
   };
 
   // ── Navigation ──────────────────────────────────────────────
+  const LANDING_SECTIONS = { '/productos': 'sf-productos', '/precios': 'sf-precios', '/faq': 'sf-faq', '/demo': 'sf-demo' };
+  function scrollToLandingSection(path, push) {
+    const id = LANDING_SECTIONS[path];
+    if (!id) return false;
+    const el = document.getElementById(id);
+    if (!el) return false;
+    if (push) { try { history.pushState({ landing: path }, '', path); } catch (e) {} }
+    requestAnimationFrame(() => { try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { el.scrollIntoView(true); } });
+    return true;
+  }
   function navigate(view) {
     try {
       if (view === 'landing') { showLanding(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
       if (view === 'login') { showLogin(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      const vPath = view && view.charAt(0) === '/' ? view : ('/' + view);
+      if (LANDING_SECTIONS[vPath]) {
+        if (!state.loggedIn) { showLanding(); scrollToLandingSection(vPath, true); return; }
+      }
       if (!document.getElementById('view-' + view)) return;
       if (!state.loggedIn) {
         showLanding();
@@ -450,20 +464,27 @@
     }
     host.innerHTML = list.map(c => {
       const ic = campIcon(c);
-      const chips = c.channels.map(ch => `<span class="ch-chip ${CH[ch].cls}">${icon(CH[ch].icon)}</span>`).join('');
+      const chips = c.channels.map(ch => `<span class="ch-chip ${CH[ch].cls}" title="${esc(CH[ch].label)}">${icon(CH[ch].icon)}</span>`).join('');
+      const chLabel = c.channels.map(ch => CH[ch].label).join(' · ');
+      const note = c.revenue ? fmt(c.revenue) + ' atribuidos' : c.status === 'Programada' ? 'Inicia 25 nov' : 'Sin envíos';
+      const barCls = c.progress >= 100 ? 'green' : c.status === 'Borrador' ? '' : '';
       return `<div class="card camp-card">
         <div class="camp-top">
           <span class="camp-icon ${ic.cls}">${icon(ic.icon)}</span>
-          <div class="camp-titles"><h4>${esc(c.name)}</h4><p>${esc(c.segment)}</p></div>
-          ${statusPill(c.status)}
+          <div class="camp-titles">
+            <span class="camp-type">${esc(chLabel)}</span>
+            <h4>${esc(c.name)}</h4>
+            <p>${icon('users', 'icon-xs')}${esc(c.segment)}</p>
+          </div>
+          <div class="camp-status">${statusPill(c.status)}</div>
         </div>
         <div class="camp-metrics">${c.metrics.map(m => `<div class="cm"><b>${esc(m[0])}</b><span>${esc(m[1])}</span></div>`).join('')}</div>
         <div class="camp-goal">
-          <div class="between"><span>${esc(c.goalLabel)}</span><b>${esc(c.goalText)}</b></div>
-          <div class="bar ${c.progress >= 100 ? 'green' : ''}"><i style="width:${Math.min(100, c.progress)}%"></i></div>
+          <div class="camp-goal-head"><span>${esc(c.goalLabel)}</span><b>${esc(c.goalText)}</b></div>
+          <div class="bar ${barCls}"><i style="width:${Math.max(0, Math.min(100, c.progress || 0))}%"></i></div>
         </div>
         <div class="camp-foot">
-          <div class="channel-chips">${chips}<span class="tiny muted" style="margin-left:2px">${c.revenue ? fmt(c.revenue) + ' atribuidos' : c.status === 'Programada' ? 'Inicia 25 nov' : 'Sin envíos'}</span></div>
+          <div class="channel-chips">${chips}<span class="camp-rev">${esc(note)}</span></div>
           <button class="link-btn" data-campaign="${c.id}">Ver informe ${icon('arrow-up-right')}</button>
         </div>
       </div>`;
@@ -637,7 +658,21 @@
     try { renderServices(); } catch (e) { console.error('renderServices error:', e); }
     try { renderReports(); } catch (e) { console.error('renderReports error:', e); }
     const hash = (location.hash || '').replace('#', '');
+    const path = (location.pathname || '/').replace(/\/+$/, '') || '/';
+    const HASH_SECTIONS = { 'sf-productos': '/productos', 'sf-precios': '/precios', 'sf-faq': '/faq', 'sf-demo': '/demo' };
     if (hash === 'login') { showLogin(); return; }
+    if (HASH_SECTIONS[hash]) {
+      showLanding();
+      const p = HASH_SECTIONS[hash];
+      try { history.replaceState(null, '', p); } catch (e) {}
+      setTimeout(() => scrollToLandingSection(p, false), 80);
+      return;
+    }
+    if (LANDING_SECTIONS[path]) {
+      showLanding();
+      setTimeout(() => scrollToLandingSection(path, false), 80);
+      return;
+    }
     if (!hash || hash === 'landing' || hash === 'view-landing') { showLanding(); return; }
     state.loggedIn = true;
     const ls = $('#landingShell'); const as = $('#appShell');
@@ -657,6 +692,21 @@
     services: renderServices,
     reports: renderReports
   };
+  MKT.scrollToLandingSection = scrollToLandingSection;
+  MKT.LANDING_SECTIONS = LANDING_SECTIONS;
+
+  window.addEventListener('popstate', () => {
+    const p = (location.pathname || '/').replace(/\/+$/, '') || '/';
+    if (!state.loggedIn && LANDING_SECTIONS[p]) {
+      showLanding();
+      setTimeout(() => scrollToLandingSection(p, false), 0);
+      return;
+    }
+    if (!state.loggedIn && (p === '/' || p === '')) {
+      showLanding();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
@@ -736,6 +786,20 @@
     const inMenu = e.target.closest('.popover') || e.target.closest('.global-search') ||
       e.target.closest('#appsBtn, #bellBtn, #profileBtn, #quickCreateBtn');
     if (!inMenu) MKT.closeMenus();
+
+    // Landing section links (clean URLs)
+    const landEl = e.target.closest('[data-landing-path]');
+    if (landEl) {
+      const pth = landEl.getAttribute('data-landing-path') || landEl.getAttribute('href') || '';
+      const norm = pth.replace(/\/+$/, '') || '/';
+      if (MKT.LANDING_SECTIONS && MKT.LANDING_SECTIONS[norm]) {
+        e.preventDefault();
+        MKT.closeMenus();
+        if (!MKT.state.loggedIn) MKT.showLanding();
+        MKT.scrollToLandingSection(norm, true);
+        return;
+      }
+    }
 
     // Handle data-view clicks (navigation)
   const viewEl = e.target.closest('[data-view]');
