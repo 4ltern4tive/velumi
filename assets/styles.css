@@ -183,15 +183,15 @@ textarea.input{resize:vertical}
 #landingShell{background:#fff}
 .sf{background:#fff;color:var(--ink)}
 .sf-nav{
-  max-width:1200px;margin:0 auto;height:76px;padding:0 28px;
+  max-width:1200px;margin:0 auto;height:80px;padding:0 28px;
   display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;z-index:50;
   background:rgba(255,255,255,.92);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line-soft);
 }
 .sf-brand{display:flex;align-items:center;gap:10px;flex:none}
-.brand-logo{display:block;width:auto;height:26px;object-fit:contain}
-.sf-brand .brand-logo{height:31px}
+.brand-logo{display:block;width:auto;height:36px;max-width:none;object-fit:contain}
+.sf-brand .brand-logo{height:48px}
 .sf-links{display:flex;align-items:center;gap:30px;font-size:13px;font-weight:500;color:var(--slate)}
 .sf-links a{transition:color .16s ease}
 .sf-links a:hover{color:var(--primary)}
@@ -326,7 +326,7 @@ textarea.input{resize:vertical}
   .sf-cta-copy{max-width:520px}
 }
 .sf-foot{max-width:1200px;margin:0 auto;padding:32px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:12px}
-.sf-foot .brand-logo{height:28px}
+.sf-foot .brand-logo{height:40px}
 .sf-foot-copy{display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right}
 .sf-foot-copy p{margin:0}
 .sf-designed{display:flex;align-items:center;justify-content:flex-end;gap:8px}
@@ -352,8 +352,8 @@ textarea.input{resize:vertical}
   overflow:hidden;
 }
 .sf-login-card::before{content:'';position:absolute;inset:0 0 auto;height:4px;background:var(--brand-gradient)}
-.sf-login-brand{display:flex;justify-content:center;margin-bottom:16px}
-.sf-login-brand .brand-logo{height:38px}
+.sf-login-brand{display:flex;justify-content:center;margin-bottom:18px}
+.sf-login-brand .brand-logo{height:80px}
 .login-kicker{display:block;text-align:center;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--primary);margin-bottom:10px}
 .sf-login-card h2{text-align:center;font-size:26px;font-weight:400;margin-bottom:6px}
 .sf-login-card>p{text-align:center;color:var(--muted);font-size:12.5px;margin-bottom:28px}
@@ -430,7 +430,7 @@ textarea.input{resize:vertical}
 .menu-toggle{display:none}
 .brand{display:flex;align-items:center;gap:7px;margin-left:4px;padding:5px 6px;border-radius:9px;transition:background .16s ease}
 .brand:hover{background:#F5F7FA}
-.brand .brand-logo{height:23px}
+.brand .brand-logo{height:34px}
 .tb-app{font-size:11.5px;font-weight:500;color:var(--muted);border-left:1px solid var(--line);padding-left:13px;margin-left:6px;white-space:nowrap}
 .tb-center{flex:1;display:flex;justify-content:center;min-width:0;padding:0 10px}
 .global-search{position:relative;width:100%;max-width:440px}
@@ -1037,7 +1037,7 @@ textarea.input{resize:vertical}
 @media(max-width:760px){
   .sf-nav{height:68px;padding:0 16px}
   .sf-links{display:none}
-  .sf-brand .brand-logo{height:27px}
+  .sf-brand .brand-logo{height:40px}
   .sf-section,.sf-pricing,.sf-faq-wrap{padding:52px 18px}
   .sf-grid,.sf-pricing-grid,.grid-2,.report-grid,.proj-grid,.camp-grid,.svc-grid{grid-template-columns:1fr}
   .sf-logos{gap:18px}
