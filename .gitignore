@@ -8,3 +8,13 @@ Desktop.ini
 
 # Dependencies (if added later)
 node_modules/
+
+# Imágenes de origen en la raíz (las versionadas están en assets/brand/)
+/32450.jpg
+/32633.png
+/32635.png
+/32638.png
+/Banner azul cobalto con logo Velumi blanco.png
+/Velumi Blue-Cyan Gradient Logo.png
+/bottom.png
+/hero.png

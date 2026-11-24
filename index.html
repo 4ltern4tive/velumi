@@ -15,6 +15,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Velumi","url":"https://velumiapp.pages.dev/"},{"@type":"WebSite","name":"Velumi","url":"https://velumiapp.pages.dev/","inLanguage":"es-UY"},{"@type":"SoftwareApplication","name":"Velumi","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"CRM y marketing con IA para pequeñas empresas en Uruguay: clientes, campañas, pipeline de ventas y contenido automático.","url":"https://velumiapp.pages.dev/"}]}
+</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Velumi">
 <meta property="og:locale" content="es_UY">
@@ -107,10 +110,10 @@
 <!-- ==================== LANDING + LOGIN ==================== -->
 <div id="landingShell">
 
-  <section class="view is-active sf" id="view-landing">
+  <section class="view is-active sf" id="view-landing" role="main">
     <header class="sf-nav">
       <a class="sf-brand" href="/" aria-label="Velumi inicio">
-        <img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="202" height="63">
+        <picture class="brand-logo-wrap"><source srcset="assets/brand/velumi-logo.webp" type="image/webp"><img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="1200" height="318"></picture>
       </a>
       <nav class="sf-links">
         <a href="/productos" data-landing-path="/productos">Productos</a>
@@ -163,6 +166,29 @@
     <section class="sf-strip">
       <span class="sf-strip-label">Comercios que ya crecen con Velumi</span>
       <div class="sf-logos"><b>ÁMBAR</b><b>Girasol</b><b>NORDIC</b><b>La Estación</b><b>Bodega del Sur</b><b>Lumen</b></div>
+    </section>
+
+    <section class="sf-proof" id="sf-casos">
+      <h2 class="sf-h2">Menos tiempo organizando. Más tiempo vendiendo.</h2>
+      <p class="sf-lead">Así se ve el día a día de un comercio que usa Velumi.</p>
+      <div class="sf-proof-grid">
+        <figure class="sf-quote">
+          <span class="sf-quote-metric">+32% de retorno</span>
+          <blockquote>«Antes tenía las clientas en una libreta y las campañas en otro lugar. Hoy veo todo en una pantalla y sé a quién escribirle.»</blockquote>
+          <figcaption><span class="sf-quote-avatar">MG</span><span><b>Martina Gómez</b><small>Ámbar Estudio · Peluquería</small></span></figcaption>
+        </figure>
+        <figure class="sf-quote">
+          <span class="sf-quote-metric">3 h ahorradas por semana</span>
+          <blockquote>«Los mensajes de cumpleaños y los recordatorios salen solos. Yo solo reviso las respuestas y agarro el turno.»</blockquote>
+          <figcaption><span class="sf-quote-avatar">LC</span><span><b>Lucía Cabrera</b><small>Girasol · Estética</small></span></figcaption>
+        </figure>
+        <figure class="sf-quote">
+          <span class="sf-quote-metric">1 lugar, 4 canales</span>
+          <blockquote>«Preparar una promo me llevaba una tarde. Ahora elijo el segmento, pido el copy a la IA y la campaña queda lista.»</blockquote>
+          <figcaption><span class="sf-quote-avatar">FS</span><span><b>Federico Silva</b><small>Bodega del Sur · Tienda</small></span></figcaption>
+        </figure>
+      </div>
+      <p class="sf-proof-note">Casos ilustrativos del recorrido demo de Velumi.</p>
     </section>
 
     <section class="sf-section" id="sf-productos">
@@ -233,11 +259,53 @@
     <section class="sf-pricing" id="sf-precios">
       <h2 class="sf-h2">Un plan para cada momento de tu negocio.</h2>
       <p class="sf-lead">Empezá con lo que necesitás hoy. Velumi crece con vos.</p>
-      <div class="sf-pricing-grid">
-        <div class="sf-price"><h3>Base</h3><div class="sf-amount">$ 1.990<span>/mes</span></div><p class="sf-cap">Todo empieza con una buena organización.</p><button class="btn btn-outline-blue block" data-action="open-login">Elegir Base</button></div>
-        <div class="sf-price featured"><span class="sf-badge">Más elegido</span><h3>Premium</h3><div class="sf-amount">$ 4.990<span>/mes</span></div><p class="sf-cap">Más herramientas para llevar tu negocio más lejos.</p><button class="btn btn-primary block" data-action="open-login">Probar Premium gratis</button></div>
-        <div class="sf-price"><h3>Socio</h3><div class="sf-amount">A medida</div><p class="sf-cap">Tu negocio, nuestro compromiso. Una solución completa y personalizada.</p><button class="btn btn-outline-blue block" data-action="open-login">Hablemos de tu negocio</button></div>
+      <div class="sf-billing" role="group" aria-label="Frecuencia de facturación">
+        <button type="button" class="is-active" data-action="billing" data-billing="monthly" aria-pressed="true">Mensual</button>
+        <button type="button" data-action="billing" data-billing="annual" aria-pressed="false">Anual <span>2 meses gratis</span></button>
       </div>
+      <div class="sf-pricing-grid">
+        <div class="sf-price">
+          <h3>Base</h3>
+          <div class="sf-amount" data-monthly="$ 1.990" data-annual="$ 1.660">$ 1.990<span>/mes</span></div>
+          <p class="sf-cap">Todo empieza con una buena organización.</p>
+          <ul class="sf-features">
+            <li>Hasta 500 contactos</li>
+            <li>CRM de clientes y seguimiento</li>
+            <li>Campañas por WhatsApp y email</li>
+            <li>3 generaciones de IA por mes</li>
+            <li>Informes básicos</li>
+          </ul>
+          <button class="btn btn-outline-blue block" data-action="open-login">Elegir Base</button>
+        </div>
+        <div class="sf-price featured">
+          <span class="sf-badge">Más elegido</span>
+          <h3>Premium</h3>
+          <div class="sf-amount" data-monthly="$ 4.990" data-annual="$ 4.160">$ 4.990<span>/mes</span></div>
+          <p class="sf-cap">Más herramientas para llevar tu negocio más lejos.</p>
+          <ul class="sf-features">
+            <li>Contactos ilimitados</li>
+            <li>Pipeline de ventas y proyectos</li>
+            <li>Automatizaciones y respuestas automáticas</li>
+            <li>IA ilimitada con variantes de copy</li>
+            <li>Informes avanzados y soporte prioritario</li>
+          </ul>
+          <button class="btn btn-primary block" data-action="open-login">Probar Premium gratis</button>
+        </div>
+        <div class="sf-price">
+          <h3>Socio</h3>
+          <div class="sf-amount">A medida</div>
+          <p class="sf-cap">Tu negocio, nuestro compromiso. Una solución completa y personalizada.</p>
+          <ul class="sf-features">
+            <li>Todo lo de Premium</li>
+            <li>Implementación a medida</li>
+            <li>Integraciones personalizadas</li>
+            <li>Account manager dedicado</li>
+            <li>Capacitación para tu equipo</li>
+          </ul>
+          <button class="btn btn-outline-blue block" data-action="open-login">Hablemos de tu negocio</button>
+        </div>
+      </div>
+      <p class="sf-price-note">Precios en pesos uruguayos (UYU), IVA incluido · Sin permanencia · 14 días gratis en planes mensuales.</p>
     </section>
 
     <section class="sf-faq-wrap" id="sf-faq">
@@ -267,19 +335,37 @@
     </section>
 
     <footer class="sf-foot">
-      <a class="sf-brand" href="/" aria-label="Velumi inicio">
-        <img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="202" height="63">
-      </a>
-      <div class="sf-foot-copy">
-        <p>Hecho en Montevideo 🇺🇾 · © 2026 Velumi</p>
-        <p class="sf-designed">Designed by <img class="sf-designed-logo" src="assets/brand/designed-by.webp" alt="Shift Studio" width="199" height="30"></p>
+      <div class="sf-foot-top">
+        <a class="sf-brand" href="/" aria-label="Velumi inicio">
+          <picture class="brand-logo-wrap"><source srcset="assets/brand/velumi-logo.webp" type="image/webp"><img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="1200" height="318"></picture>
+        </a>
+        <div class="sf-foot-copy">
+          <p>Hecho en Montevideo 🇺🇾 · © 2026 Velumi</p>
+          <p class="sf-designed">Designed by <img class="sf-designed-logo" src="assets/brand/designed-by.webp" alt="Shift Studio" width="199" height="30"></p>
+        </div>
       </div>
+      <nav class="sf-foot-nav" aria-label="Enlaces del pie de página">
+        <div class="sf-foot-col"><b>Producto</b>
+          <a href="/productos" data-landing-path="/productos">Qué hace Velumi</a>
+          <a href="/demo" data-landing-path="/demo">Ver la demo</a>
+          <a href="/precios" data-landing-path="/precios">Precios</a>
+        </div>
+        <div class="sf-foot-col"><b>Ayuda</b>
+          <a href="/faq" data-landing-path="/faq">Preguntas frecuentes</a>
+          <a href="mailto:hola@velumi.uy">hola@velumi.uy</a>
+          <button type="button" data-action="open-login">Ingresar</button>
+        </div>
+        <div class="sf-foot-col"><b>Legal</b>
+          <button type="button" data-action="legal" data-legal="privacidad">Privacidad</button>
+          <button type="button" data-action="legal" data-legal="terminos">Términos de uso</button>
+        </div>
+      </nav>
     </footer>
   </section>
 
   <section class="view sf-login" id="view-login" hidden>
     <div class="sf-login-card">
-      <div class="sf-login-brand"><img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="202" height="63"></div>
+      <div class="sf-login-brand"><picture class="brand-logo-wrap"><source srcset="assets/brand/velumi-logo.webp" type="image/webp"><img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="1200" height="318"></picture></div>
       <span class="login-kicker">Tu comercio, en movimiento</span>
       <h2>Ingresá a tu cuenta</h2>
       <p>Demo: usá cualquier email y contraseña para entrar.</p>
@@ -328,7 +414,7 @@
       <button class="tb-icon menu-toggle" id="menuToggle" aria-label="Abrir menú"><svg class="icon"><use href="#i-menu"/></svg></button>
       <button class="tb-icon" id="appsBtn" aria-label="Aplicaciones" aria-haspopup="true" aria-expanded="false"><svg class="icon"><use href="#i-grid"/></svg></button>
       <button class="brand" data-view="home" aria-label="Velumi inicio">
-        <img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="202" height="63">
+        <picture class="brand-logo-wrap"><source srcset="assets/brand/velumi-logo.webp" type="image/webp"><img class="brand-logo" src="assets/brand/velumi-logo.png" alt="Velumi" width="1200" height="318"></picture>
       </button>
       <span class="tb-app">Ventas · CRM</span>
       <div class="tb-center">
@@ -400,7 +486,7 @@
           <div>
             <div class="breadcrumb"><b>Velumi</b><svg class="icon"><use href="#i-chevron-right"/></svg><span>Inicio</span></div>
             <h1 class="greeting">Hola, Martina <span class="wave">👋</span></h1>
-            <p class="page-sub">Este es el pulso de <strong>Ámbar Estudio</strong> · Hoy, 19 nov 2026</p>
+            <p class="page-sub">Este es el pulso de <strong>Ámbar Estudio</strong> · <span id="todayLabel">Hoy</span></p>
           </div>
           <div class="page-actions">
             <button class="btn btn-secondary" data-view="informes"><svg class="icon"><use href="#i-chart"/></svg>Ver informes</button>

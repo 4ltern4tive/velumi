@@ -8,7 +8,8 @@
   const fmt = n => '$ ' + Number(n || 0).toLocaleString('es-UY');
   const icon = (name, cls = '') => `<svg class="icon ${cls}"><use href="#i-${name}"/></svg>`;
   const initials = name => String(name || '?').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
-  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&', '<': '<', '>': '>', '"': '"', "'": '&#39;' }[c]));
+  const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ESCAPES[c]);
 
   const CH = {
     whatsapp: { icon: 'whatsapp', cls: 'wa', label: 'WhatsApp' },
@@ -163,6 +164,7 @@
       try { history.replaceState(null, '', '#' + view); } catch (e) {}
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (view === 'home') renderHome();
+      if (view === 'ia') renderAi();
       if (view === 'informes') renderReports();
     } catch (e) {
       console.error('Navigate error:', e);
@@ -410,7 +412,7 @@
         ${ds.map(d => {
           const av = clientAvatar(d.client);
           const ch = CH[d.channel] || CH.whatsapp;
-          return `<div class="kcard" draggable="true" data-deal="${d.id}">
+          return `<div class="kcard" draggable="true" tabindex="0" role="button" aria-label="${esc(d.title)} · ${fmt(d.amount)} · usá las flechas para mover entre etapas" data-deal="${d.id}">
             <div class="k-title">${esc(d.title)}</div>
             <div class="k-client">${icon(ch.icon)}${esc(d.client)}</div>
             <div class="k-amt">${fmt(d.amount)}</div>
@@ -436,6 +438,67 @@
     if (statSmalls[1]) statSmalls[1].textContent = `${openDeals.length} negocios sin cerrar`;
     if (statSmalls[2]) statSmalls[2].textContent = `por negocio · ${won.length} ganados`;
   }
+
+  /* ---------------- Pipeline: arrastrar negocios entre etapas ---------------- */
+  let draggedDeal = null;
+  function moveDeal(id, stageId) {
+    const deal = state.deals.find(d => d.id === id);
+    if (!deal || deal.stage === stageId || !D.stages.some(s => s.id === stageId)) return false;
+    const stage = D.stages.find(s => s.id === stageId);
+    deal.stage = stageId;
+    if (stageId === 'ganado') deal.days = 0;
+    saveState(state);
+    renderKanban();
+    MKT.toast('Negocio movido', { sub: `${deal.title} · ${stage.name}`, type: 'ai' });
+    return true;
+  }
+  document.addEventListener('dragstart', e => {
+    const card = e.target.closest('.kcard[data-deal]');
+    if (!card) return;
+    draggedDeal = card.dataset.deal;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', draggedDeal);
+    card.classList.add('is-dragging');
+  });
+  document.addEventListener('dragend', e => {
+    e.target.closest('.kcard')?.classList.remove('is-dragging');
+    $$('.kcol').forEach(col => col.classList.remove('is-drop-target'));
+    draggedDeal = null;
+  });
+  document.addEventListener('dragover', e => {
+    const col = e.target.closest('.kcol[data-stage]');
+    if (!col || !draggedDeal) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    $$('.kcol').forEach(c => c.classList.toggle('is-drop-target', c === col));
+  });
+  document.addEventListener('dragleave', e => {
+    const col = e.target.closest('.kcol');
+    if (col && !col.contains(e.relatedTarget)) col.classList.remove('is-drop-target');
+  });
+  document.addEventListener('drop', e => {
+    const col = e.target.closest('.kcol[data-stage]');
+    if (!col) return;
+    e.preventDefault();
+    const id = draggedDeal || e.dataTransfer.getData('text/plain');
+    $$('.kcol').forEach(c => c.classList.remove('is-drop-target'));
+    moveDeal(id, col.dataset.stage);
+    draggedDeal = null;
+  });
+  document.addEventListener('keydown', e => {
+    const card = e.target.closest('.kcard[data-deal]');
+    if (!card || !['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+    const deal = state.deals.find(d => d.id === card.dataset.deal);
+    if (!deal) return;
+    const idx = D.stages.findIndex(s => s.id === deal.stage);
+    const next = D.stages[idx + (e.key === 'ArrowRight' ? 1 : -1)];
+    if (!next) return;
+    e.preventDefault();
+    if (moveDeal(deal.id, next.id)) {
+      const moved = $(`.kcard[data-deal="${deal.id}"]`);
+      moved?.focus();
+    }
+  });
 
   /* ---------------- Campañas ---------------- */
   function campIcon(c) {
@@ -647,8 +710,133 @@
     }
   }
 
+  /* ---------------- Contenido IA (modo demo) ---------------- */
+  const AI_OPENERS = {
+    Cercano: ['¡Hola! 👋', 'Hola, ¿cómo estás?', 'Qué lindo que nos escribas 💙'],
+    Premium: ['Descubrí una propuesta pensada para vos.', 'Lo mejor, para vos.', 'Una experiencia exclusiva.'],
+    Directo: ['Novedades que te importan.', 'Reservá hoy tu lugar.', 'Ya está disponible.'],
+    Didáctico: ['¿Sabías que...?', 'Te contamos un tip 👇', '3 razones para probarlo.']
+  };
+  function buildVariants(f) {
+    const topic = (f.topic || 'tu producto o servicio').trim();
+    const audience = (f.audience || 'vos').trim();
+    const extra = (f.extra || '').trim();
+    const openers = AI_OPENERS[f.tone] || AI_OPENERS.Cercano;
+    const tags = f.type === 'instagram'
+      ? '\n\n#' + topic.replace(/[^\p{L}\p{N}]+/gu, '') + ' #Velumi #Emprendimientos'
+      : '';
+    return [
+      `${openers[0]} Hoy queremos contarte sobre ${topic}. Pensado para ${audience}${extra ? ', con ' + extra.toLowerCase() : ''}. Consultanos y lo charlamos ✨${tags}`,
+      `${openers[1]}\n\n${topic} en Ámbar Estudio: una propuesta simple, cercana y hecha a tu medida. ${extra ? extra + '. ' : ''}Escribinos y te contamos todos los detalles.${tags}`,
+      `${openers[2]}\n\nSi estás buscando ${topic.toLowerCase()}, este es tu momento. ${audience[0].toUpperCase() + audience.slice(1)}: reservá tu turno y lo vemos juntos. 💙${tags}`
+    ];
+  }
+  function renderAiHistory() {
+    const host = $('#view-ia .history');
+    if (!host) return;
+    const tones = {
+      pink: 'background:#FDEBF4;color:#D63384',
+      green: 'background:#E7F8F1;color:#1FA855',
+      blue: 'background:#EAF3FF;color:#0E7DFB'
+    };
+    host.innerHTML = state.sessions.slice(0, 8).map((s, i) => `
+      <div class="hist" data-action="use-session" data-session="${i}">
+        <span class="h-ic" style="${tones[s.tone] || tones.blue}">${icon(s.icon || 'sparkles')}</span>
+        <div class="flex1"><b>${esc(s.title)}</b><span>${esc(s.kind)}</span></div>
+        <time>${esc(s.time || 'hoy')}</time>
+      </div>`).join('');
+  }
+  function renderAi() {
+    const out = $('#aiOutput');
+    if (!out) return;
+    renderAiHistory();
+    const variants = state.ai.variants || [];
+    if (!variants.length) {
+      out.innerHTML = `<div class="empty">${icon('sparkles')}<b>Todo listo para crear</b><p>Completá el formulario y generá tu primer copy.</p></div>`;
+      return;
+    }
+    out.innerHTML = `<div class="ai-variants">` + variants.map((v, i) => `
+      <article class="ai-variant">
+        <div class="ai-variant-head"><span class="pill purple">Variante ${i + 1}</span>
+          <button class="btn btn-ghost btn-sm" data-copy="${i}">${icon('copy')} Copiar</button></div>
+        <p>${esc(v)}</p>
+      </article>`).join('') + `</div>`;
+  }
+  function generateAi() {
+    const btn = $('#aiGenerateBtn');
+    const f = {
+      topic: $('#aiTopic')?.value || '',
+      type: $('#aiType')?.value || 'instagram',
+      tone: $('#aiTone')?.value || 'Cercano',
+      audience: $('#aiAudience')?.value || '',
+      extra: $('#aiExtra')?.value || ''
+    };
+    if (!f.topic.trim()) {
+      MKT.toast('Contanos de qué quieres hablar', { type: 'error' });
+      $('#aiTopic')?.focus();
+      return;
+    }
+    if (btn) { btn.disabled = true; btn.classList.add('is-loading'); }
+    setTimeout(() => {
+      const variants = buildVariants(f);
+      state.ai.variants = variants;
+      state.ai.type = f.type;
+      state.ai.tone = f.tone;
+      const channel = { instagram: 'Instagram', whatsapp: 'WhatsApp', email: 'Email', landing: 'Landing' }[f.type] || 'Instagram';
+      state.sessions.unshift({
+        title: 'Post: ' + f.topic.trim(), kind: `${channel} · ${variants.length} variantes`,
+        icon: f.type === 'instagram' ? 'instagram' : f.type === 'whatsapp' ? 'whatsapp' : 'mail',
+        tone: 'pink', aiTone: f.tone, time: 'hoy', variants
+      });
+      state.sessions = state.sessions.slice(0, 8);
+      saveState(state);
+      renderAi();
+      const sub = $('#aiResultSub');
+      if (sub) sub.textContent = `Generado para ${f.topic.trim()}`;
+      const pill = $('#aiVariantPill');
+      if (pill) pill.textContent = variants.length + ' variantes';
+      if (btn) { btn.disabled = false; btn.classList.remove('is-loading'); }
+      MKT.toast('Variantes listas', { sub: '3 copys generados con IA', type: 'ai' });
+    }, 650);
+  }
+  function useSession(i) {
+    const s = state.sessions[i];
+    if (!s) return;
+    const channels = { Instagram: 'instagram', WhatsApp: 'whatsapp', Email: 'email', Landing: 'landing' };
+    const channel = Object.keys(channels).find(k => (s.kind || '').includes(k));
+    if (channel && $('#aiType')) $('#aiType').value = channels[channel];
+    const toneSelect = $('#aiTone');
+    if (toneSelect) {
+      const tone = s.aiTone && Array.from(toneSelect.options).some(o => o.value === s.aiTone) ? s.aiTone : 'Cercano';
+      toneSelect.value = tone;
+    }
+    if ($('#aiTopic')) $('#aiTopic').value = (s.title || '').replace(/^[^:]+:\s*/, '');
+    if (s.variants) { state.ai.variants = s.variants; renderAi(); }
+    MKT.toast('Generación cargada', { sub: s.title, type: 'ai' });
+  }
+  $('#aiGenerateBtn')?.addEventListener('click', generateAi);
+  document.addEventListener('click', e => {
+    const copyBtn = e.target.closest('[data-copy]');
+    if (copyBtn) {
+      const v = state.ai.variants[Number(copyBtn.dataset.copy)];
+      if (v && navigator.clipboard) {
+        navigator.clipboard.writeText(v)
+          .then(() => MKT.toast('Copiado al portapapeles', { type: 'ai' }))
+          .catch(() => MKT.toast('No se pudo copiar', { type: 'error' }));
+      }
+      return;
+    }
+    const sessionEl = e.target.closest('[data-action="use-session"]');
+    if (sessionEl) useSession(Number(sessionEl.dataset.session));
+  });
+
   /* ---------------- Init ---------------- */
   function init() {
+    const todayLabel = $('#todayLabel');
+    if (todayLabel) {
+      const today = new Intl.DateTimeFormat('es-UY', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date());
+      todayLabel.textContent = 'Hoy, ' + today.replace('.', '');
+    }
     try { renderHome(); } catch (e) { console.error('renderHome error:', e); }
     try { renderClients(); } catch (e) { console.error('renderClients error:', e); }
     try { renderKanban(); } catch (e) { console.error('renderKanban error:', e); }
@@ -657,6 +845,7 @@
     try { renderFlows(); } catch (e) { console.error('renderFlows error:', e); }
     try { renderServices(); } catch (e) { console.error('renderServices error:', e); }
     try { renderReports(); } catch (e) { console.error('renderReports error:', e); }
+    try { renderAi(); } catch (e) { console.error('renderAi error:', e); }
     const hash = (location.hash || '').replace('#', '');
     const path = (location.pathname || '/').replace(/\/+$/, '') || '/';
     const HASH_SECTIONS = { 'sf-productos': '/productos', 'sf-precios': '/precios', 'sf-faq': '/faq', 'sf-demo': '/demo' };
@@ -690,7 +879,8 @@
     projects: renderProjects,
     flows: renderFlows,
     services: renderServices,
-    reports: renderReports
+    reports: renderReports,
+    ai: renderAi
   };
   MKT.scrollToLandingSection = scrollToLandingSection;
   MKT.LANDING_SECTIONS = LANDING_SECTIONS;
@@ -727,7 +917,7 @@
   const modalHead = (title, sub, ic, tone = 'blue') =>
     `<div class="modal-head"><div style="display:flex;gap:10px;align-items:flex-start">
       <span class="ic ${tone}" style="width:34px;height:34px;border-radius:9px;display:grid;place-items:center">${icon(ic)}</span>
-      <div><h3>${title}</h3>${sub ? `<p>${sub}</p>` : ''}</div></div>
+      <div><h3 id="modalTitle">${esc(title)}</h3>${sub ? `<p>${esc(sub)}</p>` : ''}</div></div>
       <button class="modal-close" data-close aria-label="Cerrar">${icon('close')}</button></div>`;
 
   /* ---------------- Toast ---------------- */
@@ -966,6 +1156,31 @@
   if (actionEl) {
     const action = actionEl.dataset.action;
     switch (action) {
+        case 'billing': {
+          $$('[data-action="billing"]').forEach(b => {
+            const on = b === actionEl;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-pressed', String(on));
+          });
+          const annual = actionEl.dataset.billing === 'annual';
+          $$('.sf-amount[data-monthly]').forEach(el => {
+            el.innerHTML = esc(annual ? el.dataset.annual : el.dataset.monthly) + '<span>/mes</span>';
+          });
+          break;
+        }
+        case 'legal': {
+          const privacy = actionEl.dataset.legal === 'privacidad';
+          MKT.openModal(`
+            ${modalHead(privacy ? 'Privacidad' : 'Términos de uso', 'Información de la demo de Velumi.', 'help')}
+            <div class="modal-body">
+              <p>${privacy
+                ? 'Esta es una demostración: los datos que ves son ficticios y se guardan solo en el almacenamiento local de tu navegador. No se envían a servidores ni se comparten con terceros.'
+                : 'Velumi es una demostración interactiva. Las funciones de pago, envío de mensajes y generación con IA son simuladas con fines de muestra. El producto final podrá cambiar estas condiciones.'}</p>
+              <p class="muted">¿Consultas? Escribinos a <a href="mailto:hola@velumi.uy">hola@velumi.uy</a>.</p>
+            </div>
+            <div class="modal-foot"><button class="btn btn-secondary" data-close>Entendido</button></div>`);
+          break;
+        }
         case 'open-login':
           MKT.showLogin();
           break;
@@ -1046,10 +1261,33 @@
   searchInput?.addEventListener('input', e => runSearch(e.target.value));
   searchInput?.addEventListener('focus', e => { if (e.target.value) runSearch(e.target.value); });
 
+  /* ---------------- Clientes: búsqueda, orden y selección ---------------- */
+  $('#clientSearch')?.addEventListener('input', e => {
+    MKT.state.clientSearch = e.target.value;
+    MKT.state.clientPage = 1;
+    MKT.render.clients();
+  });
+  $('#clientSort')?.addEventListener('change', e => {
+    MKT.state.clientSort = e.target.value;
+    MKT.state.clientPage = 1;
+    MKT.render.clients();
+  });
+  document.addEventListener('change', e => {
+    if (e.target.matches('#clientsTableHost thead .checkbox')) {
+      $$('#clientsTableHost tbody .checkbox').forEach(cb => { cb.checked = e.target.checked; });
+      return;
+    }
+    if (e.target.matches('#clientsTableHost tbody .checkbox')) {
+      const master = $('#clientsTableHost thead .checkbox');
+      const boxes = $$('#clientsTableHost tbody .checkbox');
+      if (master) master.checked = boxes.length > 0 && boxes.every(b => b.checked);
+    }
+  });
+
   /* ---------------- Modales base ---------------- */
   function openModal(html, opts = {}) {
     modalRoot.innerHTML = `<div class="modal-backdrop" data-modal-backdrop>
-      <div class="modal ${opts.wide ? 'wide' : ''}" role="dialog" aria-modal="true">${html}</div></div>`;
+      <div class="modal ${opts.wide ? 'wide' : ''}" role="dialog" aria-modal="true" aria-labelledby="modalTitle">${html}</div></div>`;
     document.body.style.overflow = 'hidden';
     setTimeout(() => {
       const first = modalRoot.querySelector('input:not([type="checkbox"]), textarea, select, button.btn-primary');
@@ -1088,6 +1326,12 @@
       e.preventDefault();
       MKT.closeMenus();
       searchInput?.focus();
+    }
+    if (e.key.toLowerCase() === 'n' && !e.ctrlKey && !e.metaKey && !e.altKey &&
+        !e.target.matches('input, textarea, select, [contenteditable="true"]') &&
+        !modalRoot.innerHTML && MKT.state.loggedIn) {
+      e.preventDefault();
+      MKT.openClientForm();
     }
   });
 
@@ -1402,18 +1646,6 @@
     }
   });
 
-  /* ---------------- Channel toggle en client card ---------------- */
-  document.addEventListener('click', e => {
-    const waClient = e.target.closest('[data-action="wa-client"]');
-    if (waClient) {
-      const name = waClient.dataset.name;
-      const c = state.clients.find(x => x.name === name);
-      if (!c) { toast('No encontramos ese cliente'); return; }
-      // Simular envío por WhatsApp
-      MKT.toast(`WhatsApp enviado a ${name} 📲`, { sub: 'Mensaje de bienvenida o seguimiento', type: 'ai' });
-    }
-  });
-
   /* ---------------- Flow: duplicate ---------------- */
   document.addEventListener('click', e => {
     const dupFlow = e.target.closest('[data-action="duplicate-flow"]');
@@ -1437,7 +1669,7 @@
   /* ---------------- Open help modal ---------------- */
   function openHelpModal() {
     openModal(`
-      ${modalHead('Ayuda Velumi', 'Consultá la guía rápida para comenzar.', 'question')}
+      ${modalHead('Ayuda Velumi', 'Consultá la guía rápida para comenzar.', 'help')}
       <div class="modal-body" style="max-height:500px;overflow:auto">
         <h3>Primeros pasos</h3>
         <ol style="line-height:1.8">
