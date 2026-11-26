@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Velumi","url":"https://velumiapp.pages.dev/"},{"@type":"WebSite","name":"Velumi","url":"https://velumiapp.pages.dev/","inLanguage":"es-UY"},{"@type":"SoftwareApplication","name":"Velumi","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"CRM y marketing con IA para pequeñas empresas en Uruguay: clientes, campañas, pipeline de ventas y contenido automático.","url":"https://velumiapp.pages.dev/"}]}
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Velumi","url":"https://velumiapp.pages.dev/"},{"@type":"WebSite","name":"Velumi","url":"https://velumiapp.pages.dev/","inLanguage":"es-UY"},{"@type":"SoftwareApplication","name":"Velumi","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"CRM y marketing con IA para pequeñas empresas en Uruguay: clientes, campañas, pipeline de ventas y contenido automático.","url":"https://velumiapp.pages.dev/"},{"@type":"VideoObject","name":"Velumi en acción: demo de la app","description":"Recorrido por Velumi: panel general, clientes, pipeline, contenido con IA e informes de ventas.","thumbnailUrl":"https://velumiapp.pages.dev/assets/demo/velumi-demo-poster.jpg","contentUrl":"https://velumiapp.pages.dev/assets/demo/velumi-demo.mp4","uploadDate":"2026-11-26","duration":"PT33S","inLanguage":"es-UY","isFamilyFriendly":true,"publisher":{"@type":"Organization","name":"Velumi"}}]}
 </script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Velumi">
@@ -207,52 +207,90 @@
     <section class="sf-demo" id="sf-demo">
       <div class="sf-demo-inner">
         <div class="sf-demo-head">
-          <h2 class="sf-h2">Mirá todo lo que podés hacer con Velumi.</h2>
-          <p class="sf-lead">Desde organizar tus clientes hasta crear tu próxima promoción. Descubrí cómo Velumi te ayuda en el día a día de tu negocio.</p>
+          <span class="sf-demo-eyebrow">Demo guiada</span>
+          <h2 class="sf-h2">Así trabaja Velumi, en 33 segundos.</h2>
+          <p class="sf-lead">Una clienta que vuelve, una venta que avanza, contenido con IA y tus resultados. Un recorrido real por la app, sin planillas ni pestañas de más.</p>
         </div>
         <div class="sf-demo-shell" data-demo-player>
-          <div class="sf-demo-stage" aria-label="Demostración interactiva de Velumi">
-            <figure class="sf-demo-slide is-active" data-step="0">
-              <div class="sf-demo-shot"><img src="assets/demo/01-home.webp" alt="Vista general del panel de Velumi con ventas, clientas y tareas" loading="lazy" width="1280" height="800"></div>
-              <figcaption class="sf-demo-caption"><span class="sf-demo-kicker">Panel general</span><strong>Todo tu negocio, de un vistazo</strong><span>Ventas, clientas activas y tareas del día reunidas en un solo lugar.</span></figcaption>
-            </figure>
-            <figure class="sf-demo-slide" data-step="1">
-              <div class="sf-demo-shot"><img src="assets/demo/02-clientes.webp" alt="Consulta de la base de clientes en Velumi" loading="lazy" width="1280" height="800"></div>
-              <figcaption class="sf-demo-caption"><span class="sf-demo-kicker">Clientes</span><strong>Tus clientas, siempre a mano</strong><span>Consultá tu base, encontrá contactos y conocé su historial en segundos.</span></figcaption>
-            </figure>
-            <figure class="sf-demo-slide" data-step="2">
-              <div class="sf-demo-shot"><img src="assets/demo/03-campana.webp" alt="Creación de una campaña o promoción en Velumi" loading="lazy" width="1280" height="800"></div>
-              <figcaption class="sf-demo-caption"><span class="sf-demo-kicker">Campañas</span><strong>Promociones listas en pocos pasos</strong><span>Elegí el canal, el segmento y el mensaje para conectar con tus clientas.</span></figcaption>
-            </figure>
-            <figure class="sf-demo-slide" data-step="3">
-              <div class="sf-demo-shot"><img src="assets/demo/04-ia-form.webp" alt="Espacio de contenido con IA en Velumi con el brief listo para crear" loading="lazy" width="1280" height="800"></div>
-              <figcaption class="sf-demo-caption"><span class="sf-demo-kicker">Contenido con IA</span><strong>Ideas listas para compartir</strong><span>Definí tema, canal y tono para preparar mensajes con el estilo de tu negocio.</span></figcaption>
-            </figure>
-            <figure class="sf-demo-slide" data-step="4">
-              <div class="sf-demo-shot"><img src="assets/demo/05-informes.webp" alt="Informes y resultados de ventas en Velumi" loading="lazy" width="1280" height="800"></div>
-              <figcaption class="sf-demo-caption"><span class="sf-demo-kicker">Resultados</span><strong>Entendé qué funciona mejor</strong><span>Visualizá ventas y resultados para tomar decisiones con más claridad.</span></figcaption>
-            </figure>
+          <div class="sf-demo-frame">
+            <div class="sf-demo-chrome">
+              <span class="sf-demo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="sf-demo-url">
+                <svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>
+                app.velumi.uy
+              </span>
+              <span class="sf-demo-badge"><span class="sf-demo-badge-dot" aria-hidden="true"></span>Demo</span>
+            </div>
+            <div class="sf-demo-stage">
+              <video
+                class="sf-demo-video"
+                data-demo-video
+                src="assets/demo/velumi-demo.mp4"
+                data-mobile-src="assets/demo/velumi-demo-mobile.mp4"
+                poster="assets/demo/velumi-demo-poster.jpg"
+                width="1280"
+                height="800"
+                preload="none"
+                muted
+                playsinline
+                aria-label="Recorrido por Velumi: panel general, clientes, pipeline, contenido con IA e informes"
+                aria-describedby="demoDesc"
+              >Tu navegador no puede reproducir el video. <a href="assets/demo/velumi-demo.mp4">Abrir la demo</a>.</video>
+              <p class="sf-sr-only" id="demoDesc">Video de 33 segundos, sin audio. Muestra el panel general, la búsqueda de clientes, el pipeline con arrastrar y soltar, la generación de tres variantes de contenido con IA y los informes de ventas.</p>
+              <button type="button" class="sf-demo-bigplay" data-demo-bigplay aria-label="Reproducir la demo de Velumi">
+                <span class="sf-demo-bigplay-icon" aria-hidden="true"></span>
+              </button>
+              <div class="sf-demo-end" data-demo-end hidden>
+                <p class="sf-demo-end-kicker">Eso es Velumi</p>
+                <p class="sf-demo-end-title">Tu negocio, en movimiento.</p>
+                <div class="sf-demo-end-actions">
+                  <button type="button" class="btn btn-primary" data-action="open-login">Probar gratis</button>
+                  <button type="button" class="btn sf-demo-end-replay" data-demo-replay>Ver de nuevo</button>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="sf-demo-controls">
-            <div class="sf-demo-progress" aria-hidden="true"><span class="sf-demo-progress-bar"></span></div>
+            <div class="sf-demo-scrub">
+              <div class="sf-demo-scrub-track" aria-hidden="true">
+                <span class="sf-demo-scrub-fill" data-demo-fill></span>
+                <span class="sf-demo-scrub-knob" data-demo-knob></span>
+              </div>
+              <input class="sf-demo-range" data-demo-range type="range" min="0" max="32.68" step="0.5" value="0" aria-label="Progreso de la demo" aria-valuetext="0:00 de 0:33">
+            </div>
             <div class="sf-demo-controls-row">
-              <button type="button" class="sf-demo-toggle" data-demo-toggle aria-pressed="false" aria-label="Pausar demostración">
-                <span class="sf-demo-toggle-icon" aria-hidden="true"></span>
-                <span class="sf-demo-toggle-text">Pausar</span>
-              </button>
-              <div class="sf-demo-steps" role="tablist" aria-label="Pasos de la demostración">
-                <button type="button" class="sf-demo-step is-active" data-demo-step="0" role="tab" aria-selected="true"><span class="sf-demo-step-dot"></span><span>Panel</span></button>
-                <button type="button" class="sf-demo-step" data-demo-step="1" role="tab" aria-selected="false"><span class="sf-demo-step-dot"></span><span>Clientes</span></button>
-                <button type="button" class="sf-demo-step" data-demo-step="2" role="tab" aria-selected="false"><span class="sf-demo-step-dot"></span><span>Promoción</span></button>
-                <button type="button" class="sf-demo-step" data-demo-step="3" role="tab" aria-selected="false"><span class="sf-demo-step-dot"></span><span>IA</span></button>
-                <button type="button" class="sf-demo-step" data-demo-step="4" role="tab" aria-selected="false"><span class="sf-demo-step-dot"></span><span>Resultados</span></button>
+              <div class="sf-demo-transport">
+                <button type="button" class="sf-demo-toggle" data-demo-toggle aria-label="Reproducir demostración">
+                  <span class="sf-demo-toggle-icon" aria-hidden="true"></span>
+                  <span class="sf-demo-toggle-text">Reproducir</span>
+                </button>
+                <span class="sf-demo-time" aria-hidden="true"><span data-demo-current>0:00</span><span class="sf-demo-time-sep">/</span><span data-demo-duration>0:33</span></span>
+              </div>
+              <div class="sf-demo-chapters" role="group" aria-label="Ir a una sección de la demo">
+                <button type="button" class="sf-demo-step is-active" data-demo-chapter data-time="0" aria-current="true" aria-label="Panel general, minuto 0:00"><span class="sf-demo-step-dot"></span><span>Panel</span></button>
+                <button type="button" class="sf-demo-step" data-demo-chapter data-time="5" aria-label="Clientes, minuto 0:05"><span class="sf-demo-step-dot"></span><span>Clientes</span></button>
+                <button type="button" class="sf-demo-step" data-demo-chapter data-time="11.6" aria-label="Pipeline, minuto 0:12"><span class="sf-demo-step-dot"></span><span>Pipeline</span></button>
+                <button type="button" class="sf-demo-step" data-demo-chapter data-time="16.5" aria-label="Contenido con IA, minuto 0:17"><span class="sf-demo-step-dot"></span><span>IA</span></button>
+                <button type="button" class="sf-demo-step" data-demo-chapter data-time="26.5" aria-label="Informes, minuto 0:27"><span class="sf-demo-step-dot"></span><span>Informes</span></button>
               </div>
             </div>
           </div>
         </div>
         <div class="sf-demo-cta">
           <button class="btn btn-primary btn-lg" data-action="open-login">Explorar Velumi</button>
+          <a class="btn btn-outline-blue btn-lg" href="/precios" data-landing-path="/precios">Ver planes</a>
         </div>
+        <details class="sf-demo-transcript">
+          <summary>Ver transcripción de la demo</summary>
+          <ol>
+            <li><span>0:00</span>Panel general: ventas del mes, clientas activas y tareas del día.</li>
+            <li><span>0:05</span>Clientes: búsqueda de una clienta y apertura de su ficha con historial.</li>
+            <li><span>0:11</span>Pipeline: un negocio avanza de etapa con arrastrar y soltar.</li>
+            <li><span>0:16</span>Contenido con IA: brief de campaña y tres variantes listas para copiar.</li>
+            <li><span>0:26</span>Informes: ventas por mes, canales y rendimiento de campañas.</li>
+            <li><span>0:33</span>Cierre: Velumi reúne clientes, campañas, pipeline e IA en un solo lugar.</li>
+          </ol>
+        </details>
       </div>
     </section>
 
